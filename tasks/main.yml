@@ -9,7 +9,7 @@
     group: "{{ owner }}"
 - name: put cert files onto remote server
   copy:
-    src: "files/secure-forward/ca-cert.pem"
+    src: "secure-forward/ca-cert.pem"
     dest: "/home/{{ owner }}/secure-forward/ca-cert.pem"
     force: yes
     mode: 0644

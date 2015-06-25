@@ -1,0 +1,14 @@
+# Include config files in the ./config.d directory
+include {{ fluentd.config_dir }}/*.conf
+<match **>
+  type                         secure_forward
+  self_hostname                {{ fluentd_hostname }}
+  shared_key                   {{ fluentd_shared_key }}
+  secure                       yes
+  ca_cert_path                 {{ fluentd_ca_cert_path }}
+  keepalive                    3600
+  <server>
+    host                       {{ fluentd_server_hostname }}
+    # port 24284
+  </server>
+</match>

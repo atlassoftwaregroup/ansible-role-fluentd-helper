@@ -1,16 +1,9 @@
 ---
 # tasks file for fluentd-helper
 - name: give acl access to td-agent
-  acl:
-    name: /var/log/
-    default: yes
-    entity: "{{ item }}"
-    etype: user
-    permissions: 0644
-    state: present
-  with_items:
-    - td-agent
-    - td-agent
+  command: sudo setfacl -R -m u:td-agent:r-x /var/log/
+- name: give acl access to td-agent
+  command: sudo setfacl -dR -m u:td-agent:r-x /var/log/
 - name: create secure-forward folder for cert
   file:
     path: "/home/{{ owner }}/secure-forward/"
